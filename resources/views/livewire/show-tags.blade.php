@@ -5,8 +5,8 @@
             <a class="text-xs" href="/">Consultants</a>
         </div>
         <div class=" space-x-0.5 md:space-x-2">
-            <a class="border-b border-blue-400 text-xs select-none" href="/tags/add/edit-tag?originURL=/tags">Full</a>
-            <a class="border-b border-blue-400 text-xs select-none" wire:click="$emitTo('modal', 'show', 'edit-tag')">Modal</a>
+            <a class="md:hidden border-b border-blue-400 text-xs select-none" href="/tags/add/edit-tag?originURL=/tags">New</a>
+            <a class="hidden md:block border-b border-blue-400 text-xs select-none" wire:click="$emitTo('modal', 'show', 'edit-tag')">New</a>
         </div>
     </div>
     <div class="px-4">
