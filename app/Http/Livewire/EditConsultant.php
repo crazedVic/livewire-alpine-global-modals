@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Consultant;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
@@ -15,7 +16,7 @@ class EditConsultant extends Component
     public $rate;
     public string $rate_frequency = "";
     public string $rate_currency = "CAD$";
-    public Collection $tags;
+    public $tags;
     public array $selected_tags =[];
     public string $searchTerm = "";
 
@@ -38,6 +39,20 @@ class EditConsultant extends Component
     public function save(){
         //dd([$this->name,$this->company,$this->email, $this->phone,$this->rate, $this->rate_frequency]);
         $this->validate($this->rules);
+        $consultant = Consultant::create([
+            'name'=> $this->name,
+            'company'=> $this->company,
+            'email'=> $this->email,
+            'phone'=> $this->phone,
+            'rate' => $this->rate,
+            'rate_frequency' => $this->rate_frequency,
+            'rate_currency' => $this->rate_currency
+        ]);
+        $consultant->tags()->attach($this->selected_tags);
+        $consultant->save();
+        $this->reset();
+        $this->emit('hide');
+        $this->emit('consultants-changed');
     }
 
     public function toggleTag(Tag $tag){

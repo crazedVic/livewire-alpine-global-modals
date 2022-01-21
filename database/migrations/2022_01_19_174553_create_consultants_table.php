@@ -16,8 +16,10 @@ class CreateConsultantsTable extends Migration
         Schema::create('consultants', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('company');
             $table->string('rate')->nullable();
-            $table->string('rate_increment')->default('hour');
+            $table->string('rate_frequency')->default('hour');
+            $table->string('rate_currency')->default('CAD$');
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->timestamps();

@@ -18,6 +18,8 @@ class ConsultantFactory extends Factory
         $categories = ["user","consultant","document","employee"];
         return [
             'name' => $this->faker->unique()->name('male'),
+            'company' => $this->faker->company(),
+            'email' => $this->faker->companyEmail(),
             'rate' => random_int(75,250),
             'phone' => $this->faker->unique()->e164PhoneNumber()
         ];

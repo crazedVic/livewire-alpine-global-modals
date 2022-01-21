@@ -11,6 +11,8 @@ class Consultant extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function tags(): MorphToMany
     {
         return $this->morphToMany(Tag::class,'taggable');
