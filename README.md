@@ -1,9 +1,9 @@
 
 ## Making Global Wrapper Livewire Classes
 
-- using AlpineJS
-- using TailwindCSS
-- using Laravel Livewire
+- using [AlpineJS](https://alpinejs.dev/)
+- using [TailwindCSS](https://tailwindcss.com/)
+- using [Laravel Livewire](https://laravel-livewire.com/)
 
 So the challenge - have one tag form and one component form, and then serve these up
 in the appropriate user experience - for mobile, modal forms suck, especially if
@@ -26,9 +26,10 @@ need some standardized practice to trigger a refresh on modal hide.
 ### Tech used
 - Livewire emit and emitTo
 - Livewire $refresh
-- Tailwind hidden and block, among others
+- Tailwind hidden and block, flex-grow and flex-shrink, among others
 - Alpine JS for hiding/showing of modals
 - Alpine $watch - super handy!
+- Alpine x-cloak - stops weird stuff from happening
 
 ### Features
 - minimalist tag search, tag results cloud
@@ -38,4 +39,3 @@ need some standardized practice to trigger a refresh on modal hide.
 ### Helpful Links:
 - [Creating a modal dialog with Alpine.js](https://w3collective.com/modal-dialog-alpine-js/)
 - [Deep dive into Laravel Livewire](https://blog.logrocket.com/deep-dive-into-laravel-livewire/)
-- 
