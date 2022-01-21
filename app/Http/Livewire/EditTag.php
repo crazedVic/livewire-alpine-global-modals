@@ -21,12 +21,9 @@ class EditTag extends Component
     }
 
     public function save(){
+        error_log("Save");
         $this->validate($this->rules);
-        dd([$this->name,$this->category]);
+        $this->emit('hide');
     }
 
-    public function cancel(){
-        error_log('show');
-        $this->emit('show');
-    }
 }

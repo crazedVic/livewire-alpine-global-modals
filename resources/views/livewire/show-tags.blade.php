@@ -4,8 +4,9 @@
             <a class="text-2xl" href="/tags">Tags</a>
             <a class="text-xs" href="/">Consultants</a>
         </div>
-        <div>
-            <a class="border-b border-blue-400 text-xs" href="/tags/add/edit-tag?originURL=/tags">New</a>
+        <div space-x-2>
+            <a class="border-b border-blue-400 text-xs select-none" href="/tags/add/edit-tag?originURL=/tags">New(Full)</a>
+             <a class="border-b border-blue-400 text-xs select-none" wire:click="$emitTo('modal', 'show', 'edit-tag')">New(Modal)</a>
         </div>
     </div>
     <div class="px-12">
@@ -19,6 +20,5 @@
             </div>
         @endforeach
     </div>
-     <button class="px-4 py-2 text-white bg-blue-500 rounded select-none no-outline focus:shadow-outline"
-             wire:click="$emitTo('modal', 'show', 'edit-tag')">Open Modal</button>
+
 </span>
