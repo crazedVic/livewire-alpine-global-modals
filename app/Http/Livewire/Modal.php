@@ -26,6 +26,7 @@ class Modal extends Component
        error_log("modal - hide");
        $this->component = null;
        $this->show = false;
+
     }
 
 }

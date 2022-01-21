@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Tag;
 use Livewire\Component;
 
 class EditTag extends Component
@@ -23,7 +24,12 @@ class EditTag extends Component
     public function save(){
         error_log("Save");
         $this->validate($this->rules);
+        Tag::create([
+            "name"=> $this->name,
+            "category" => $this->category
+        ]);
         $this->emit('hide');
+        $this->emit('tags-changed');
     }
 
 }

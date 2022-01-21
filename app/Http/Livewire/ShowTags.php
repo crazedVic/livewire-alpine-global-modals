@@ -13,7 +13,7 @@ class ShowTags extends Component
     public string $searchTerm = "";
     public bool $show = false;
 
-    public $listeners = ["show"];
+    public $listeners = ["tags-changed" => '$refresh'];
 
     public function render()
     {
@@ -25,4 +25,5 @@ class ShowTags extends Component
         error_log('event heard');
         $this->show = !$this->show;
     }
+
 }

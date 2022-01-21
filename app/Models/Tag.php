@@ -10,6 +10,8 @@ class Tag extends Model
 {
     use HasFactory;
 
+    protected $fillable = ["name", "category"];
+
     public function consultants(): MorphToMany
     {
         return $this->morphedByMany(Consultant::class,'taggable');
