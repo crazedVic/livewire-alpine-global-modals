@@ -21,7 +21,8 @@
             @error('company') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
         </label>
         <label for="phone" class="block my-1">
-            <input wire:model="phone" type="text" id="phone" autocomplete="nope" class="bg-gray-600 text-white w-full py-1 px-4 my-0.5 rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
+            <input wire:model="phone" type="text" id="phone" autocomplete="nope"
+                   class="bg-gray-600 text-white w-full py-1 px-4 my-0.5 rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
             @error('phone') border border-red-500 @enderror" placeholder="Phone Number" >
             @error('phone') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
         </label>
@@ -30,23 +31,29 @@
             @error('email') border border-red-500 @enderror" placeholder="Email Address" >
             @error('email') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
         </label>
-        <div class="flex w-full justify-between space-x-3 my-1">
-            <label for="rate_currency" class="block flex-shrink">
-                <select wire:model="rate_currency" type="text" id="rate_currency" class="bg-gray-600 text-white py-1 px-4 my-0.5 focus:outline-none focus:bg-gray-500 appearance-none
+        <div class="flex flex-col md:flex-row w-full justify-between md:space-x-3 my-1">
+            <label for="rate_currency" class="block flex-shrink w-full md:w-auto">
+                <select wire:model="rate_currency" type="text" id="rate_currency"
+                        class="bg-gray-600 text-white py-1 px-4 my-0.5 w-full focus:outline-none focus:bg-gray-500
+                        appearance-none rounded-md
                 @error('rate_currency') border border-red-500 @enderror">
                     <option selected>CAD$</option>
                     <option>USD$</option>
                     <option>Euro</option>
                 </select>
-                @error('rate_currency') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
+                @error('rate_currency') <div class="text-red-400 text-right italic text-xxs my-1">{{ $message }}</div> @enderror
             </label>
-            <label for="rate" class="block flex-grow">
-                <input wire:model="rate" type="text" id="rate" class="bg-gray-600 text-white py-1 px-4 my-0.5 w-full focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
+            <label for="rate" class="block flex-grow w-full md:w-auto my-1 md:my-0">
+                <input wire:model="rate" type="text" id="rate"
+                       class="bg-gray-600 text-white py-1 px-4 my-0.5 w-full focus:outline-none focus:bg-gray-500 focus:border
+                       focus:border-blue-600 rounded-md
                 @error('rate') border border-red-500 @enderror" placeholder="Billing Rate" autocomplete="nope" >
                 @error('rate') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
             </label>
-            <label for="rate_frequency" class="block flex-shrink">
-                <select wire:model="rate_frequency" type="text" id="rate_frequency" class="bg-gray-600 text-white py-1 w-full px-4 my-0.5 focus:outline-none focus:bg-gray-500 appearance-none
+            <label for="rate_frequency" class="block flex-shrink w-full md:w-auto">
+                <select wire:model="rate_frequency" type="text" id="rate_frequency"
+                        class="bg-gray-600 text-white py-1 w-full px-4 my-0.5 focus:outline-none focus:bg-gray-500
+                        appearance-none rounded-md
                 @error('rate_frequency') border border-red-500 @enderror" placeholder="Hourly/Monthly">
                     <option value="" selected>Frequency</option>
                     <option>Per Hour</option>
@@ -57,11 +64,13 @@
             </label>
         </div>
     </form>
-    <div class="mt-5 p-1 md:px-2 mx-2 lg:mx-4  border border-gray-800  pb-3 ">
-        <div class="flex py-1 justify-between w-full flex-wrap">
+    <div class="mt-5 p-1 md:px-2 mx-2 lg:mx-4 border border-gray-800  pb-3 ">
+        <div class="flex md:flex-row flex-col py-1 justify-between w-full flex-wrap">
              <h2 class="text-gray-300 flex-grow">Fields of Expertise</h2>
             <div class="flex-shrink">
-                <input wire:model.debounce.500ms="searchTerm" class="bg-gray-600 text-white rounded-md text-xs px-2 py-0.5 focus:outline-none focus:bg-gray-500" placeholder="Search" type="search">
+                <input wire:model.debounce.500ms="searchTerm"
+                       class="bg-gray-600 w-full md:w-auto text-white rounded-md text-xs px-2 py-0.5 focus:outline-none focus:bg-gray-500"
+                       placeholder="Search" type="search">
             </div>
         </div>
         <span class="flex items-center flex-wrap w-full">
