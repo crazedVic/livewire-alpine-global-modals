@@ -19,5 +19,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', \App\Http\Livewire\ShowConsultants::class);
 Route::get('/tags', \App\Http\Livewire\ShowTags::class);
-Route::get('/consultants/add', \App\Http\Livewire\EditConsultant::class);
+Route::get('/consultants/add/{component}', \App\Http\Livewire\FullPage::class);
 Route::get('/tags/add/{component}', \App\Http\Livewire\FullPage::class);

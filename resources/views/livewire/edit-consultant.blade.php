@@ -1,5 +1,5 @@
-<div>
-    <div class="flex justify-between items-end my-5 mx-8">
+<div class="mx-auto max-w-2xl">
+    <div class="flex justify-between items-end mb-5">
         <div class="flex justify-around items-baseline space-x-1 mr-8 text-blue-300">
             <span class="text-2xl">Consultant</span>
             <span class="text-xs text-blue-400">New</span>
@@ -8,7 +8,7 @@
             <a class="border-b border-blue-400 text-xs cursor-pointer" wire:click="save()">Save</a>&nbsp;&nbsp;<a class="text-gray-400 text-xs cursor-pointer" href="/">Cancel</a>
         </div>
     </div>
-    <form class="px-2 md:mx-12 border border-gray-800  pb-1 ">
+    <form class="p-1 md:px-2 mx-2 lg:mx-4 border border-gray-800 pb-1 ">
         <h2 class="text-gray-300">Contact Information</h2>
         <label for="name" class="block my-1">
             <input wire:model="name" id="name" type="text" autocomplete="nope"  class="bg-gray-600 text-white w-full py-1 px-4 rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
@@ -57,8 +57,8 @@
             </label>
         </div>
     </form>
-    <div class="mt-5 px-2 md:mx-12 border border-gray-800  pb-3 ">
-        <div class="flex py-1 justify-between w-full">
+    <div class="mt-5 p-1 md:px-2 mx-2 lg:mx-4  border border-gray-800  pb-3 ">
+        <div class="flex py-1 justify-between w-full flex-wrap">
              <h2 class="text-gray-300 flex-grow">Fields of Expertise</h2>
             <div class="flex-shrink">
                 <input wire:model.debounce.500ms="searchTerm" class="bg-gray-600 text-white rounded-md text-xs px-2 py-0.5 focus:outline-none focus:bg-gray-500" placeholder="Search" type="search">
@@ -72,7 +72,7 @@
             @endforeach
         </span>
     </div>
-    <div class="mt-5 px-2 md:mx-12 border border-gray-800">
+    <div class="mt-5 p-1 md:px-2 mx-2 lg:mx-4  border border-gray-800">
         <div class="flex justify-between w-full">
             <h2 class="text-gray-300 flex-grow">Notes</h2>
         </div>
