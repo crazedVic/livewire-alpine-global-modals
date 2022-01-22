@@ -19,6 +19,9 @@ class EditConsultant extends Component
     public $tags;
     public array $selected_tags =[];
     public string $searchTerm = "";
+    public string $platform = "None";
+    public string $platform_profile = "";
+    public string $linkedin = "";
 
     public $rules = [
         'name'=> 'required|string|max:256',
@@ -27,7 +30,10 @@ class EditConsultant extends Component
         'phone'=> 'required|string|min:10',
         'rate' => 'required|numeric|min:1',
         'rate_frequency' => 'required|string',
-        'rate_currency' => 'required|string'
+        'rate_currency' => 'required|string',
+        'platform' => 'required|string',
+        'platform_profile' => 'string',
+        'linkedin' => 'string'
     ];
 
     public function render()

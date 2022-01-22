@@ -63,6 +63,35 @@
                 @error('rate_frequency') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
             </label>
         </div>
+        <label for="platform" class="block w-my-1">
+            <select wire:model="platform" type="text" id="platform" autocomplete="nope"
+                    class="bg-gray-600 text-white py-1 px-4 my-0.5 w-full focus:outline-none focus:bg-gray-500
+                        appearance-none rounded-md
+                @error('platform') border border-red-500 @enderror">
+                <option value="" selected>Select Platform</option>
+                <option value="None">None/Direct</option>
+                <option>Freelancer</option>
+                <option>Fiverr</option>
+                <option>Upwork</option>
+            </select>
+            @error('platform') <div class="text-red-400 text-right italic text-xxs my-1">{{ $message }}</div> @enderror
+        </label>
+        @if($platform != "None" && $platform != "")
+        <label for="platform_profile" class="block my-1">
+            <input wire:model="platform_profile" type="email" id="platform_profile" autocomplete="nope"
+                   class="bg-gray-600 text-white w-full py-1 px-4 my-0.5
+                   rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
+            @error('platform_profile') border border-red-500 @enderror" placeholder="Freelance Profile URL" >
+            @error('platform_profile') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
+        </label>
+        @endif
+        <label for="linkedin" class="block my-1">
+            <input wire:model="linkedin" type="email" id="linkedin" autocomplete="nope"
+                   class="bg-gray-600 text-white w-full py-1 px-4 my-0.5 rounded-md focus:outline-none
+                   focus:bg-gray-500 focus:border focus:border-blue-600
+            @error('linkedin') border border-red-500 @enderror" placeholder="LinkedIn Profile URL" >
+            @error('linkedin') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
+        </label>
     </form>
     <div class="mt-5 p-1 md:px-2 mx-2 lg:mx-4 border border-gray-800  pb-3 ">
         <div class="flex md:flex-row flex-col py-1 justify-between w-full flex-wrap">
