@@ -133,6 +133,7 @@
                      focus:border-blue-600 focus:outline-none
                   "
         id="exampleFormControlTextarea1"
+                wire:model="notes"
         rows="3"
         placeholder="Additional Notes"
             ></textarea>

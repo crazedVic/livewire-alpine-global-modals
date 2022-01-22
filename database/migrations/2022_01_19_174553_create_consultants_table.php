@@ -25,6 +25,7 @@ class CreateConsultantsTable extends Migration
             $table->string('platform')->default("Direct");
             $table->string('platform_profile')->nullable();
             $table->string('linkedin')->nullable();
+            $table->string('notes')->nullable();
             $table->timestamps();
         });
     }

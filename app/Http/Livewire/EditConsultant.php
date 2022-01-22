@@ -22,6 +22,7 @@ class EditConsultant extends Component
     public string $platform = "None";
     public string $platform_profile = "";
     public string $linkedin = "";
+    public string $notes = "";
 
     public $rules = [
         'name'=> 'required|string|max:256',
@@ -33,7 +34,8 @@ class EditConsultant extends Component
         'rate_currency' => 'required|string',
         'platform' => 'required|string',
         'platform_profile' => 'string',
-        'linkedin' => 'string'
+        'linkedin' => 'string',
+        'notes' => 'string|min:5'
     ];
 
     public function render()
