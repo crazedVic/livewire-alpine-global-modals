@@ -54,7 +54,11 @@ class EditConsultant extends Component
             'phone'=> $this->phone,
             'rate' => $this->rate,
             'rate_frequency' => $this->rate_frequency,
-            'rate_currency' => $this->rate_currency
+            'rate_currency' => $this->rate_currency,
+            'platform' => $this->platform,
+            'platform_profile' => $this->platform_profile,
+            'linkedin' => $this->linkedin,
+            'notes' => $this->notes
         ]);
         $consultant->tags()->attach($this->selected_tags);
         $consultant->save();
