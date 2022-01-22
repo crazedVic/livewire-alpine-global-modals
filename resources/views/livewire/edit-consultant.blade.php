@@ -78,7 +78,7 @@
         </label>
         @if($platform != "None" && $platform != "")
         <label for="platform_profile" class="block my-1">
-            <input wire:model="platform_profile" type="email" id="platform_profile" autocomplete="nope"
+            <input wire:model="platform_profile" type="text" id="platform_profile" autocomplete="nope"
                    class="bg-gray-600 text-white w-full py-1 px-4 my-0.5
                    rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
             @error('platform_profile') border border-red-500 @enderror" placeholder="Freelance Profile URL" >
@@ -86,7 +86,7 @@
         </label>
         @endif
         <label for="linkedin" class="block my-1">
-            <input wire:model="linkedin" type="email" id="linkedin" autocomplete="nope"
+            <input wire:model="linkedin" type="text" id="linkedin" autocomplete="nope"
                    class="bg-gray-600 text-white w-full py-1 px-4 my-0.5 rounded-md focus:outline-none
                    focus:bg-gray-500 focus:border focus:border-blue-600
             @error('linkedin') border border-red-500 @enderror" placeholder="LinkedIn Profile URL" >
