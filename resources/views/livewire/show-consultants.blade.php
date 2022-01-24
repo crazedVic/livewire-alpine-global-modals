@@ -15,9 +15,14 @@
         <input wire:model="searchTerm" type="text" class="bg-gray-600 text-white w-full py-1 px-4
            rounded-md focus:outline-none focus:bg-gray-500"
                placeholder="Search by Tag" >
-        @if($searchTerm!="")<div class="italic text-xs text-gray-600 text-right mt-1">
-            Searching for "{{$searchTerm}}"
-        </div>@endif
+        <div class="flex flex-row justify-end space-x-0.5 md:space-x-2 cursor-pointer">
+            @if($searchTerm!="")
+                <span class="italic text-xs text-gray-600 text-right mt-1">
+                    Searching for "{{$searchTerm}}"
+                    <span class="underline cursor-pointer select-none text-blue-600" wire:click="$set('searchTerm','')">clear</span>
+                </span>
+            @endif
+        </div>
     </div>
     <div class="px-1 md:px-4 py-4" x-data>
         @foreach($consultants as $consultant)
