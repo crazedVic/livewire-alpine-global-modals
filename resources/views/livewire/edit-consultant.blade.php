@@ -2,7 +2,7 @@
     <div class="flex justify-between items-end mb-5">
         <div class="flex justify-around items-baseline space-x-1 mr-8 text-blue-300">
             <span class="text-2xl">Consultant</span>
-            <span class="text-xs text-blue-400">New</span>
+            <span class="text-xs text-blue-400">@if($edit_id)Edit @else New @endif</span>
         </div>
         <div>
             <a class="border-b border-blue-400 text-xs cursor-pointer" wire:click="save()">Save</a>&nbsp;&nbsp;<a class="text-gray-400 text-xs cursor-pointer" href="/">Cancel</a>
@@ -34,7 +34,7 @@
         <div class="flex flex-col md:flex-row w-full justify-between md:space-x-3 my-1">
             <label for="rate_currency" class="block flex-shrink w-full md:w-auto">
                 <select wire:model="rate_currency" type="text" id="rate_currency"
-                        class="bg-gray-600 text-white py-1 px-4 my-0.5 w-full focus:outline-none focus:bg-gray-500
+                        class="bg-gray-600 text-white py-1 pl-4 md:pr-1 my-0.5 w-full focus:outline-none focus:bg-gray-500
                         appearance-none rounded-md
                 @error('rate_currency') border border-red-500 @enderror">
                     <option selected>CAD$</option>
@@ -52,7 +52,7 @@
             </label>
             <label for="rate_frequency" class="block flex-shrink w-full md:w-auto">
                 <select wire:model="rate_frequency" type="text" id="rate_frequency"
-                        class="bg-gray-600 text-white py-1 w-full px-4 my-0.5 focus:outline-none focus:bg-gray-500
+                        class="bg-gray-600 text-white py-1 w-full pl-4 md:pr-1 my-0.5 focus:outline-none focus:bg-gray-500
                         appearance-none rounded-md
                 @error('rate_frequency') border border-red-500 @enderror" placeholder="Hourly/Monthly">
                     <option value="" selected>Frequency</option>

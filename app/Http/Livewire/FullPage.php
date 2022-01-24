@@ -8,16 +8,16 @@ class FullPage extends Component
 {
     public $originURL;
     public $component;
+    public $edit_id = null;
 
     public $listeners = ['hide'];
 
-    public function mount($component){
+    public function mount($component, $edit_id = null){
         $this->originURL = request()->query('originURL') ?? null;
     }
 
     public function render()
     {
-        error_log($this->originURL);
         return view('livewire.full-page');
     }
 

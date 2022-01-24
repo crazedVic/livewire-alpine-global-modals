@@ -8,7 +8,7 @@
          x-transition:enter-end="opacity-100 scale-100">
         <div class="p-3 mx-2 bg-black rounded shadow-xl md:max-w-xl md:p-3 lg:p-4 md:mx-0" @click.away="open = false">
             @if($component)
-                @livewire($component)
+                @livewire($component, ['edit_id' => $edit_id])
             @endif
         </div>
     </div>

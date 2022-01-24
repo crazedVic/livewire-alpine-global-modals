@@ -9,6 +9,8 @@ use Livewire\Component;
 
 class EditConsultant extends Component
 {
+    public $edit_id;
+    public Consultant $consultant;
     public string $name = "";
     public string $company = "";
     public string $phone = "";
@@ -38,8 +40,13 @@ class EditConsultant extends Component
         'notes' => 'string|min:5'
     ];
 
+    public function mount($component=null, $edit_id = null){
+        //pass
+    }
+
     public function render()
     {
+        error_log($this->edit_id);
         $this->tags = $this->searchTerm == "" ? Tag::where('category','consultant')->get() : Tag::where("name","like",'%'.$this->searchTerm. '%')->where('category','consultant')->get();
         return view('livewire.edit-consultant');
     }

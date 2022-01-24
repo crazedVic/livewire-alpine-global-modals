@@ -5,21 +5,44 @@
             <a class="text-xs" href="/tags">Tags</a>
         </div>
         <div class=" space-x-0.5 md:space-x-2">
-            <a class="lg:hidden border-b border-blue-400 text-xs select-none" href="/consultants/add/edit-consultant?originURL=/tags">New</a>
-             <a class="hidden lg:block border-b border-blue-400 text-xs select-none" wire:click="$emitTo('modal', 'show', 'edit-consultant')">New</a>
+            <a class="lg:hidden border-b border-blue-400 text-xs select-none"
+               href="/consultants/add/edit-consultant?originURL=/">New</a>
+             <a class="hidden lg:block border-b border-blue-400 text-xs select-none"
+                wire:click="$emitTo('modal', 'show', 'edit-consultant')">New</a>
         </div>
     </div>
-    <div class="px-4">
-        <input wire:model="searchTerm" type="text" class="bg-gray-600 text-white w-full py-1 px-4 rounded-md focus:outline-none focus:bg-gray-500" placeholder="Search by Tag" >
-        @if($searchTerm!="")<div class="italic text-xs text-gray-600 text-right mt-1">Searching for "{{$searchTerm}}"</div>@endif
+    <div class="px-1 md:px-4">
+        <input wire:model="searchTerm" type="text" class="bg-gray-600 text-white w-full py-1 px-4
+           rounded-md focus:outline-none focus:bg-gray-500"
+               placeholder="Search by Tag" >
+        @if($searchTerm!="")<div class="italic text-xs text-gray-600 text-right mt-1">
+            Searching for "{{$searchTerm}}"
+        </div>@endif
     </div>
-    <div class="px-4 py-4">
+    <div class="px-1 md:px-4 py-4" x-data>
         @foreach($consultants as $consultant)
-            <div class="bg-gray-700 pl-3 bg-opacity-20 mb-0.25 flex items-center rounded-sm"><span class="mr-2 whitespace-nowrap">{{$consultant->name}}</span>
-                <span class="flex items-center flex-wrap justify-end w-full">
+            <div class="bg-gray-700 pl-3 bg-opacity-20 mb-0.25 flex flex-col md:flex-row md:items-center rounded-sm cursor-pointer hover:bg-gray-800"
+                 id="{{$loop->index}}"
+                 x-on:mouseover="$refs.edit_{{$loop->index}}.style.visibility='visible';"
+                 x-on:mouseout="$refs.edit_{{$loop->index}}.style.visibility='hidden';">
+                <span class="mr-2 whitespace-nowrap">
+                    {{$consultant->name}}
+                    <span x-ref="edit_{{$loop->index}}" class="invisible">
+                        <!-- this link is for desktop only-->
+                        <i class="hidden lg:inline-block far fa-edit text-red-500"
+                           wire:click="$emitTo('modal', 'show','edit-consultant', '{{$consultant->id}}')"></i>
+                        <!-- this link is for mobile only-->
+                        <a href="/consultants/{{$consultant->id}}/edit-consultant?originURL=/">
+                            <i class="inline-block lg:hidden far fa-edit text-green-500" ></i></a>
+                    </span>
+                </span>
+                <span class="flex md:items-center items-start flex-wrap md:justify-end w-full">
                     @if($searchTerm!="")
                         @foreach($consultant->tags()->where('name', 'like', '%'.$searchTerm.'%')->get() as $tag)
-                            <div class="align-middle bg-green-800 color-white rounded-md px-1 select-none py-0.5 text-xxs mx-0.25 my-0.25">{{$tag->name}}</div>
+                            <div class="md:align-middle bg-green-800 color-white rounded-md px-1
+                            select-none py-0.5 text-xxs mx-0.25 my-0.25">
+                                {{$tag->name}}
+                            </div>
                         @endforeach
                     @endif
                 </span>

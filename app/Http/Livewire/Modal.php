@@ -6,8 +6,9 @@ use Livewire\Component;
 
 class Modal extends Component
 {
+    public $edit_id;
     public $component;
-    public $show = false;
+    public bool $show = false;
     public $listeners = ['show','hide'];
 
    public function render()
@@ -15,10 +16,10 @@ class Modal extends Component
         return view('livewire.modal');
     }
 
-    public function show($component)
+    public function show($component, $edit_id = null)
     {
-        error_log("modal - show");
         $this->component = $component;
+        $this->edit_id = $edit_id;
         $this->show = true;
     }
 
@@ -26,7 +27,6 @@ class Modal extends Component
        error_log("modal - hide");
        $this->component = null;
        $this->show = false;
-
     }
 
 }
