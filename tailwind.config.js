@@ -16,7 +16,16 @@ module.exports = {
         },
         margin: {
             '0.25': '3px',
-        }
+        },
+        animation: {
+            fade: 'fadeOut 1s ease-in-out',
+        },
+        keyframes: theme => ({
+            fadeOut: {
+                '0%': {opacity: 0},
+                '100%': { opacity: 1},
+            },
+        }),
     },
   },
   plugins: [],

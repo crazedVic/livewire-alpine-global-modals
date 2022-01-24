@@ -24,12 +24,12 @@ class EditTag extends Component
     public function save(){
         error_log("Save");
         $this->validate($this->rules);
-        Tag::create([
+        $tag = Tag::create([
             "name"=> $this->name,
             "category" => $this->category
         ]);
-        $this->emit('hide');
-        $this->emit('tags-changed');
+        $this->emitUp('hide', 'Tag saved successfully');
+        $this->emit('tags-changed',$tag->id);
     }
 
 }
