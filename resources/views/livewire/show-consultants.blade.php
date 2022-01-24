@@ -21,7 +21,11 @@
     </div>
     <div class="px-1 md:px-4 py-4" x-data>
         @foreach($consultants as $consultant)
-            <div class="bg-gray-700 pl-3 bg-opacity-20 mb-0.25 flex flex-col md:flex-row md:items-center rounded-sm  hover:bg-gray-800"
+            <div class="pl-3 mb-0.25 flex flex-col md:flex-row md:items-center rounded-sm hover:bg-gray-800
+                        @if($consultant->id == $new_id)
+                            bg-green-700 bg-opacity-70 animate-fade
+                        @else bg-gray-700 bg-opacity-20
+                    @endif"
                  id="{{$loop->index}}"
                  x-on:mouseover="$refs.edit_{{$loop->index}}.style.visibility='visible';"
                  x-on:mouseout="$refs.edit_{{$loop->index}}.style.visibility='hidden';">

@@ -68,7 +68,7 @@ class EditConsultant extends Component
         ];
 
         if($this->consultant->exists){
-
+            $consultant = $this->consultant;
             $this->consultant->update($values);
             $this->consultant->tags()->sync($this->selected_tags);
             $this->consultant->save();
@@ -80,7 +80,7 @@ class EditConsultant extends Component
         }
 
         $this->emitUp('hide', "Saved Successfully!");
-        $this->emit('consultants-changed');
+        $this->emit('consultants-changed', $consultant->id);
     }
 
     public function toggleTag(Tag $tag){
