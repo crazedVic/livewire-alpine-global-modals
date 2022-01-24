@@ -25,14 +25,13 @@ class FullPage extends Component
     }
 
     public function hide($message = null){
-        if($this->component) {
-            error_log("fullpage - hide");
-            if ($message) {
-                toast()
-                    ->success($message)
-                    ->pushOnNextPage();
-            }
-            return redirect($this->originURL);
+
+        if ($message) {
+            toast()
+                ->success($message)
+                ->pushOnNextPage();
         }
+        return redirect($this->originURL);
+
     }
 }

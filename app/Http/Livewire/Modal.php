@@ -28,15 +28,12 @@ class Modal extends Component
     }
 
     public function hide($message = null){
-        if($this->component) {
-            error_log("modal - hide");
-            $this->component = null;
-            $this->show = false;
-            if ($message) {
-                toast()
-                    ->success($message)
-                    ->push();
-            }
+        $this->component = null;
+        $this->show = false;
+        if ($message) {
+            toast()
+                ->success($message)
+                ->push();
         }
     }
 
