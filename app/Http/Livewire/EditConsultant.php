@@ -10,11 +10,10 @@ use Livewire\Component;
 class EditConsultant extends Component
 {
     public $edit_id;
-    public Consultant $consultant;
+    public $consultant;
     public $tags;
     public array $selected_tags =[];
     public string $searchTerm = "";
-
 
     public $rules = [
         'consultant.name'=> 'required|string|max:256',
@@ -25,9 +24,9 @@ class EditConsultant extends Component
         'consultant.rate_frequency' => 'required|string',
         'consultant.rate_currency' => 'required|string',
         'consultant.platform' => 'required|string',
-        'consultant.platform_profile' => 'string',
-        'consultant.linkedin' => 'string',
-        'consultant.notes' => 'string|min:5'
+        'consultant.platform_profile' => 'string|nullable',
+        'consultant.linkedin' => 'string|nullable',
+        'consultant.notes' => 'string|min:5|nullable'
     ];
 
     public function mount($component=null, $edit_id = null)
@@ -69,6 +68,7 @@ class EditConsultant extends Component
         ];
 
         if($this->consultant->exists){
+
             $this->consultant->update($values);
             $this->consultant->tags()->sync($this->selected_tags);
             $this->consultant->save();
@@ -79,18 +79,20 @@ class EditConsultant extends Component
             $consultant->save();
         }
 
-        $this->reset();
         $this->emit('hide');
         $this->emit('consultants-changed');
     }
 
     public function toggleTag(Tag $tag){
 
-        if (in_array($tag->id, $this->selected_tags)) {
-            unset($this->selected_tags[$tag->id]);
+        $id_to_remove = array_search($tag->id, $this->selected_tags,true);
+        error_log(implode(',', $this->selected_tags));
+        error_log($id_to_remove);
+        if ($id_to_remove) {
+            unset($this->selected_tags[$id_to_remove]);
         }
         else{
-            $this->selected_tags[$tag->id] = $tag->id;
+            $this->selected_tags[] = $tag->id;
         }
     }
 }

@@ -24,11 +24,12 @@ class DatabaseSeeder extends Seeder
     private function seedTaggables(){
         $faker = Factory::create();
         // create random number of tag assignments to each consultant
+        $tags = Tag::where("category","consultant")->pluck("id");
         for ($x = 1; $x <= 10; $x++ ) {
             $tags_count = random_int(1,11);
             for ($y = 1; $y <= $tags_count; $y++) {
                 \DB::table('taggables')->insert([
-                    'tag_id' => $faker->unique()->numberBetween(1,50),
+                    'tag_id' => $faker->unique()->randomElement($tags),
                     'taggable_id' => $x,
                     'taggable_type' => "App\\Models\\Consultant"
                 ]);

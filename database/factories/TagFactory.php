@@ -15,10 +15,10 @@ class TagFactory extends Factory
     public function definition()
     {
 
-        $categories = ["user","consultant","document","employee"];
+        $categories = ["user","consultant","document","employee","consultant","consultant"];
         return [
             'name' => $this->faker->unique()->colorName(),
-            'category' =>$categories[array_rand($categories)]
+            'category' => $categories[array_rand($categories)]
         ];
 
     }

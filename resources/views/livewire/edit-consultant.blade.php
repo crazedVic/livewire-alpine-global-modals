@@ -76,7 +76,7 @@
             </select>
             @error('consultant.platform') <div class="text-red-400 text-right italic text-xxs my-1">{{ $message }}</div> @enderror
         </label>
-        @if($consultant->platform != "None" && $consultant->platform != "")
+        @if($consultant && ($consultant->platform != "None" && $consultant->platform != ""))
         <label for="platform_profile" class="block my-1">
             <input wire:model="consultant.platform_profile" type="text" id="platform_profile" autocomplete="nope"
                    class="bg-gray-600 text-white w-full py-1 px-4 my-0.5
@@ -105,7 +105,7 @@
         <span class="flex items-center flex-wrap w-full">
             @foreach($tags as $tag)
                 <a class="align-middle color-white rounded-md px-1 py-0.5 text-xs mx-0.25 my-0.25 cursor-pointer select-none
-                @if(isset($selected_tags[$tag->id])) bg-green-700 @else bg-gray-700 @endif"
+                @if(in_array($tag->id, $selected_tags)) bg-green-700 @else bg-gray-700 @endif"
                 wire:click="toggleTag({{$tag}})">{{$tag->name}}</a>
             @endforeach
         </span>
