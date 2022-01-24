@@ -12,20 +12,29 @@ class ShowTags extends Component
     public Collection $tags;
     public string $searchTerm = "";
     public bool $show = false;
+    public bool $showTrashed = false;
     public $new_id;
 
     public $listeners = ["tags-changed" => "tagsChanged"];
 
     public function render()
     {
-        $this->tags = Tag::where('name', 'like', $this->searchTerm != "" ? '%'.$this->searchTerm.'%' : '%')
-            ->orderBy('name')->get();
+        $query = Tag::where('name', 'like', $this->searchTerm != "" ? '%'.$this->searchTerm.'%' : '%');
+        if($this->showTrashed){
+            $query->withTrashed();
+        }
+        $query->orderBy('name');
+        $this->tags = $query->get();
         return view('livewire.show-tags');
     }
 
     public function show(){
         error_log('event heard');
         $this->show = !$this->show;
+    }
+
+    public function toggleTrashed(){
+        $this->showTrashed = !$this->showTrashed;
     }
 
     public function tagsChanged($new_id = null){

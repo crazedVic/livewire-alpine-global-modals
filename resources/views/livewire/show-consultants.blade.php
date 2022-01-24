@@ -33,11 +33,11 @@
                     {{$consultant->name}}
                     <span x-ref="edit_{{$loop->index}}" class="invisible cursor-pointer">
                         <!-- this link is for desktop only-->
-                        <i class="hidden lg:inline-block far fa-edit text-red-500"
+                        <i class="hidden lg:inline-block far fa-edit text-green-500 text-xs"
                            wire:click="$emitTo('modal', 'show','edit-consultant', '{{$consultant->id}}')"></i>
                         <!-- this link is for mobile only-->
                         <a href="/consultants/{{$consultant->id}}/edit-consultant?originURL=/">
-                            <i class="inline-block lg:hidden far fa-edit text-green-500" ></i></a>
+                            <i class="inline-block lg:hidden far fa-edit text-green-500 text-xs" ></i></a>
                     </span>
                 </span>
                 <span class="flex md:items-center items-start flex-wrap md:justify-end w-full">
