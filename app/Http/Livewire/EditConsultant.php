@@ -79,7 +79,7 @@ class EditConsultant extends Component
             $consultant->save();
         }
 
-        $this->emit('hide', "Saved Successfully!");
+        $this->emitUp('hide', "Saved Successfully!");
         $this->emit('consultants-changed');
     }
 
