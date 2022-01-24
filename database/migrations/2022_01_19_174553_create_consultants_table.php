@@ -22,10 +22,10 @@ class CreateConsultantsTable extends Migration
             $table->string('rate_currency')->default('CAD$');
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
-            $table->string('platform')->default("Direct");
-            $table->string('platform_profile')->nullable();
-            $table->string('linkedin')->nullable();
-            $table->string('notes')->nullable();
+            $table->string('platform')->default("None");
+            $table->string('platform_profile')->default("");
+            $table->string('linkedin')->default("");
+            $table->string('notes')->default("");
             $table->timestamps();
         });
     }

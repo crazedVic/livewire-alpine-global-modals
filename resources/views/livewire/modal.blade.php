@@ -1,4 +1,5 @@
 <div class="mt-6" x-data="{ open: @entangle('show')}">
+    <!-- we could check to see if screen is too small and then redirect to fullpage wrapper? -->
     <!-- Dark Overlay -->
     <div class="fixed inset-0" style="background-color: rgba(255,255,255,.3);" x-show="open" x-cloak></div>
     <!-- A basic modal dialog with title, body and one button to close -->

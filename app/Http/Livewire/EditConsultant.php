@@ -11,64 +11,74 @@ class EditConsultant extends Component
 {
     public $edit_id;
     public Consultant $consultant;
-    public string $name = "";
-    public string $company = "";
-    public string $phone = "";
-    public string $email = "";
-    public $rate;
-    public string $rate_frequency = "";
-    public string $rate_currency = "CAD$";
     public $tags;
     public array $selected_tags =[];
     public string $searchTerm = "";
-    public string $platform = "None";
-    public string $platform_profile = "";
-    public string $linkedin = "";
-    public string $notes = "";
+
 
     public $rules = [
-        'name'=> 'required|string|max:256',
-        'company'=> 'string|max:256',
-        'email'=> 'required|email|max:256',
-        'phone'=> 'required|string|min:10',
-        'rate' => 'required|numeric|min:1',
-        'rate_frequency' => 'required|string',
-        'rate_currency' => 'required|string',
-        'platform' => 'required|string',
-        'platform_profile' => 'string',
-        'linkedin' => 'string',
-        'notes' => 'string|min:5'
+        'consultant.name'=> 'required|string|max:256',
+        'consultant.company'=> 'string|max:256',
+        'consultant.email'=> 'required|email|max:256',
+        'consultant.phone'=> 'required|string|min:10',
+        'consultant.rate' => 'required|numeric|min:1',
+        'consultant.rate_frequency' => 'required|string',
+        'consultant.rate_currency' => 'required|string',
+        'consultant.platform' => 'required|string',
+        'consultant.platform_profile' => 'string',
+        'consultant.linkedin' => 'string',
+        'consultant.notes' => 'string|min:5'
     ];
 
-    public function mount($component=null, $edit_id = null){
-        //pass
+    public function mount($component=null, $edit_id = null)
+    {
+        if ($edit_id) {
+            $this->consultant = Consultant::findOrFail($edit_id);
+            $this->selected_tags = $this->consultant->tags->pluck('id')->toArray();
+        }
+        else{
+            $this->consultant = new Consultant();
+        }
     }
 
     public function render()
     {
-        error_log($this->edit_id);
-        $this->tags = $this->searchTerm == "" ? Tag::where('category','consultant')->get() : Tag::where("name","like",'%'.$this->searchTerm. '%')->where('category','consultant')->get();
+        $this->tags = $this->searchTerm == "" ?
+            Tag::where('category','consultant')->get() :
+            Tag::where("name","like",'%'.$this->searchTerm. '%')
+                ->where('category','consultant')->get();
         return view('livewire.edit-consultant');
     }
 
     public function save(){
-        //dd([$this->name,$this->company,$this->email, $this->phone,$this->rate, $this->rate_frequency]);
+
         $this->validate($this->rules);
-        $consultant = Consultant::create([
-            'name'=> $this->name,
-            'company'=> $this->company,
-            'email'=> $this->email,
-            'phone'=> $this->phone,
-            'rate' => $this->rate,
-            'rate_frequency' => $this->rate_frequency,
-            'rate_currency' => $this->rate_currency,
-            'platform' => $this->platform,
-            'platform_profile' => $this->platform_profile,
-            'linkedin' => $this->linkedin,
-            'notes' => $this->notes
-        ]);
-        $consultant->tags()->attach($this->selected_tags);
-        $consultant->save();
+        error_log('valid?');
+        $values = [
+            'name'=> $this->consultant->name,
+            'company'=> $this->consultant->company,
+            'email'=> $this->consultant->email,
+            'phone'=> $this->consultant->phone,
+            'rate' => $this->consultant->rate,
+            'rate_frequency' => $this->consultant->rate_frequency,
+            'rate_currency' => $this->consultant->rate_currency,
+            'platform' => $this->consultant->platform,
+            'platform_profile' => $this->consultant->platform_profile,
+            'linkedin' => $this->consultant->linkedin,
+            'notes' => $this->consultant->notes
+        ];
+
+        if($this->consultant->exists){
+            $this->consultant->update($values);
+            $this->consultant->tags()->sync($this->selected_tags);
+            $this->consultant->save();
+        }
+        else{
+            $consultant = Consultant::create($values);
+            $consultant->tags()->attach($this->selected_tags);
+            $consultant->save();
+        }
+
         $this->reset();
         $this->emit('hide');
         $this->emit('consultants-changed');

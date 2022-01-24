@@ -13,6 +13,16 @@ class Consultant extends Model
 
     protected $guarded = [];
 
+    // default values when creating new
+    protected $attributes = [
+        'rate_currency' => "CAD$",
+        'platform' => "None",
+        'company' => "",
+        'linkedin' => "",
+        'platform_profile' => "",
+        'notes'=>""
+    ];
+
     public function tags(): MorphToMany
     {
         return $this->morphToMany(Tag::class,'taggable');

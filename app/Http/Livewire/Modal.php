@@ -29,4 +29,10 @@ class Modal extends Component
        $this->show = false;
     }
 
+    public function updatedShow($value){
+        if(!$value){
+            $this->component = null;
+        }
+    }
+
 }

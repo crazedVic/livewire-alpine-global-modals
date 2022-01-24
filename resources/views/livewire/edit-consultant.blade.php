@@ -11,86 +11,86 @@
     <form class="p-1 md:px-2 mx-2 lg:mx-4 border border-gray-800 pb-1 ">
         <h2 class="text-gray-300">Contact Information</h2>
         <label for="name" class="block my-1">
-            <input wire:model="name" id="name" type="text" autocomplete="nope"  class="bg-gray-600 text-white w-full py-1 px-4 rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
-            @error('name') border border-red-500 @enderror" placeholder="Consultant's Name" >
-            @error('name') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
+            <input wire:model="consultant.name" id="name" type="text" autocomplete="nope"  class="bg-gray-600 text-white w-full py-1 px-4 rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
+            @error('consultant.name') border border-red-500 @enderror" placeholder="Consultant's Name" >
+            @error('consultant.name') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
         </label>
         <label for="company" class="block my-1">
-            <input wire:model="company" type="text" id="company" autocomplete="nope" class="bg-gray-600 text-white w-full py-1 px-4 my-0.5 rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
-            @error('company') border border-red-500 @enderror" placeholder="Company Name (optional)" >
-            @error('company') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
+            <input wire:model="consultant.company" type="text" id="company" autocomplete="nope" class="bg-gray-600 text-white w-full py-1 px-4 my-0.5 rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
+            @error('consultant.company') border border-red-500 @enderror" placeholder="Company Name (optional)" >
+            @error('consultant.company') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
         </label>
         <label for="phone" class="block my-1">
-            <input wire:model="phone" type="text" id="phone" autocomplete="nope"
+            <input wire:model="consultant.phone" type="text" id="phone" autocomplete="nope"
                    class="bg-gray-600 text-white w-full py-1 px-4 my-0.5 rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
-            @error('phone') border border-red-500 @enderror" placeholder="Phone Number" >
-            @error('phone') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
+            @error('consultant.phone') border border-red-500 @enderror" placeholder="Phone Number" >
+            @error('consultant.phone') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
         </label>
         <label for="email" class="block my-1">
-            <input wire:model="email" type="text" id="email" autocomplete="nope" class="bg-gray-600 text-white w-full py-1 px-4 my-0.5 rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
-            @error('email') border border-red-500 @enderror" placeholder="Email Address" >
-            @error('email') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
+            <input wire:model="consultant.email" type="text" id="email" autocomplete="nope" class="bg-gray-600 text-white w-full py-1 px-4 my-0.5 rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
+            @error('consultant.email') border border-red-500 @enderror" placeholder="Email Address" >
+            @error('consultant.email') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
         </label>
         <div class="flex flex-col md:flex-row w-full justify-between md:space-x-3 my-1">
             <label for="rate_currency" class="block flex-shrink w-full md:w-auto">
-                <select wire:model="rate_currency" type="text" id="rate_currency"
+                <select wire:model="consultant.rate_currency" type="text" id="rate_currency"
                         class="bg-gray-600 text-white py-1 pl-4 md:pr-1 my-0.5 w-full focus:outline-none focus:bg-gray-500
                         appearance-none rounded-md
-                @error('rate_currency') border border-red-500 @enderror">
+                @error('consultant.rate_currency') border border-red-500 @enderror">
                     <option selected>CAD$</option>
                     <option>USD$</option>
                     <option>Euro</option>
                 </select>
-                @error('rate_currency') <div class="text-red-400 text-right italic text-xxs my-1">{{ $message }}</div> @enderror
+                @error('consultant.rate_currency') <div class="text-red-400 text-right italic text-xxs my-1">{{ $message }}</div> @enderror
             </label>
             <label for="rate" class="block flex-grow w-full md:w-auto my-1 md:my-0">
-                <input wire:model="rate" type="text" id="rate"
+                <input wire:model="consultant.rate" type="text" id="rate"
                        class="bg-gray-600 text-white py-1 px-4 my-0.5 w-full focus:outline-none focus:bg-gray-500 focus:border
                        focus:border-blue-600 rounded-md
-                @error('rate') border border-red-500 @enderror" placeholder="Billing Rate" autocomplete="nope" >
-                @error('rate') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
+                @error('consultant.rate') border border-red-500 @enderror" placeholder="Billing Rate" autocomplete="nope" >
+                @error('consultant.rate') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
             </label>
             <label for="rate_frequency" class="block flex-shrink w-full md:w-auto">
-                <select wire:model="rate_frequency" type="text" id="rate_frequency"
+                <select wire:model="consultant.rate_frequency" type="text" id="rate_frequency"
                         class="bg-gray-600 text-white py-1 w-full pl-4 md:pr-1 my-0.5 focus:outline-none focus:bg-gray-500
                         appearance-none rounded-md
-                @error('rate_frequency') border border-red-500 @enderror" placeholder="Hourly/Monthly">
+                @error('consultant.rate_frequency') border border-red-500 @enderror" placeholder="Hourly/Monthly">
                     <option value="" selected>Frequency</option>
                     <option>Per Hour</option>
                     <option>Per Day</option>
                     <option>Per Month</option>
                 </select>
-                @error('rate_frequency') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
+                @error('consultant.rate_frequency') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
             </label>
         </div>
         <label for="platform" class="block w-my-1">
-            <select wire:model="platform" type="text" id="platform" autocomplete="nope"
+            <select wire:model="consultant.platform" type="text" id="platform" autocomplete="nope"
                     class="bg-gray-600 text-white py-1 px-4 my-0.5 w-full focus:outline-none focus:bg-gray-500
                         appearance-none rounded-md
-                @error('platform') border border-red-500 @enderror">
+                @error('consultant.platform') border border-red-500 @enderror">
                 <option value="" selected>Select Platform</option>
                 <option value="None">None/Direct</option>
                 <option>Freelancer</option>
                 <option>Fiverr</option>
                 <option>Upwork</option>
             </select>
-            @error('platform') <div class="text-red-400 text-right italic text-xxs my-1">{{ $message }}</div> @enderror
+            @error('consultant.platform') <div class="text-red-400 text-right italic text-xxs my-1">{{ $message }}</div> @enderror
         </label>
-        @if($platform != "None" && $platform != "")
+        @if($consultant->platform != "None" && $consultant->platform != "")
         <label for="platform_profile" class="block my-1">
-            <input wire:model="platform_profile" type="text" id="platform_profile" autocomplete="nope"
+            <input wire:model="consultant.platform_profile" type="text" id="platform_profile" autocomplete="nope"
                    class="bg-gray-600 text-white w-full py-1 px-4 my-0.5
                    rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
-            @error('platform_profile') border border-red-500 @enderror" placeholder="Freelance Profile URL" >
-            @error('platform_profile') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
+            @error('consultant.platform_profile') border border-red-500 @enderror" placeholder="Freelance Profile URL" >
+            @error('consultant.platform_profile') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
         </label>
         @endif
         <label for="linkedin" class="block my-1">
-            <input wire:model="linkedin" type="text" id="linkedin" autocomplete="nope"
+            <input wire:model="consultant.linkedin" type="text" id="linkedin" autocomplete="nope"
                    class="bg-gray-600 text-white w-full py-1 px-4 my-0.5 rounded-md focus:outline-none
                    focus:bg-gray-500 focus:border focus:border-blue-600
-            @error('linkedin') border border-red-500 @enderror" placeholder="LinkedIn Profile URL" >
-            @error('linkedin') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
+            @error('consultant.linkedin') border border-red-500 @enderror" placeholder="LinkedIn Profile URL" >
+            @error('consultant.linkedin') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
         </label>
     </form>
     <div class="mt-5 p-1 md:px-2 mx-2 lg:mx-4 border border-gray-800  pb-3 ">
@@ -137,9 +137,17 @@
         rows="3"
         placeholder="Additional Notes"
             ></textarea>
-        </div>
     </div>
-{{--    <div class="mt-5 px-2 md:mx-12 border border-gray-800">--}}
+    @if($errors->any())
+        <div class="mt-5 p-1 md:px-2 mx-2 lg:mx-4 text-xxs border border-gray-800">
+            <div>
+                    @foreach ($errors->all() as $error)
+                        <div class="text-xs italic text-red-500">{{$error}}</div>
+                    @endforeach
+            </div>
+        </div>
+    @endif
+        {{--    <div class="mt-5 px-2 md:mx-12 border border-gray-800">--}}
 {{--        <div class="flex py-2 justify-between w-full">--}}
 {{--            <h2 class="text-gray-300 flex-grow">Reviews</h2>--}}
 
