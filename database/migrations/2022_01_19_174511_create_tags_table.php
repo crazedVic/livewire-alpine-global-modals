@@ -17,8 +17,9 @@ class CreateTagsTable extends Migration
             $table->id();
             $table->string('category')->default('general');
             $table->string('name');
-            $table->timestamps();
             $table->unique(['category', 'name'],'category_name');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

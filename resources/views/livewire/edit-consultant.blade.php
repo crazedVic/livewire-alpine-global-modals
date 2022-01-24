@@ -104,9 +104,17 @@
         </div>
         <span class="flex items-center flex-wrap w-full">
             @foreach($tags as $tag)
+                @if(!$tag->trashed() || ($tag->trashed() && in_array($tag->id, $selected_tags)))
                 <a class="align-middle color-white rounded-md px-1 py-0.5 text-xs mx-0.25 my-0.25 cursor-pointer select-none
-                @if(in_array($tag->id, $selected_tags)) bg-green-700 @else bg-gray-700 @endif"
-                wire:click="toggleTag({{$tag}})">{{$tag->name}}</a>
+                @if( in_array($tag->id, $selected_tags) && $tag->trashed() )
+                    bg-gray-800 text-gray-500 line-through
+                @elseif (in_array($tag->id, $selected_tags))
+                    bg-green-700
+                @else
+                    bg-gray-700
+                @endif"
+                wire:click="toggleTag({{$tag->id}})">{{$tag->name}}</a>
+                @endif
             @endforeach
         </span>
     </div>

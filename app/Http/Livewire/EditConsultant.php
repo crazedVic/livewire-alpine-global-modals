@@ -33,7 +33,7 @@ class EditConsultant extends Component
     {
         if ($edit_id) {
             $this->consultant = Consultant::findOrFail($edit_id);
-            $this->selected_tags = $this->consultant->tags->pluck('id')->toArray();
+            $this->selected_tags = $this->consultant->tags()->withTrashed()->pluck('id')->toArray();
         }
         else{
             $this->consultant = new Consultant();
@@ -43,7 +43,7 @@ class EditConsultant extends Component
     public function render()
     {
         $this->tags = $this->searchTerm == "" ?
-            Tag::where('category','consultant')->get() :
+            Tag::where('category','consultant')->withTrashed()->get() :
             Tag::where("name","like",'%'.$this->searchTerm. '%')
                 ->where('category','consultant')->get();
         return view('livewire.edit-consultant');
@@ -83,16 +83,20 @@ class EditConsultant extends Component
         $this->emit('consultants-changed', $consultant->id);
     }
 
-    public function toggleTag(Tag $tag){
+    public function toggleTag($id){
+        error_log($id);
+        $tag = Tag::withTrashed()->find($id);
+        $id_to_remove = array_search($id, $this->selected_tags,true);
 
-        $id_to_remove = array_search($tag->id, $this->selected_tags,true);
-        error_log(implode(',', $this->selected_tags));
-        error_log($id_to_remove);
         if ($id_to_remove) {
             unset($this->selected_tags[$id_to_remove]);
+            if($tag->trashed()){
+                // remove relationship in db as well
+                $this->consultant->tags()->detach($id);
+            }
         }
         else{
-            $this->selected_tags[] = $tag->id;
+            $this->selected_tags[] = $id;
         }
     }
 }
