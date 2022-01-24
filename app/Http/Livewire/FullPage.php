@@ -3,9 +3,12 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Usernotnull\Toast\Concerns\WireToast;
 
 class FullPage extends Component
 {
+    use WireToast;
+
     public $originURL;
     public $component;
     public $edit_id = null;
@@ -21,8 +24,15 @@ class FullPage extends Component
         return view('livewire.full-page');
     }
 
-    public function hide(){
-        error_log("fullpage - hide");
-        return redirect($this->originURL);
+    public function hide($message = null){
+        if($this->component) {
+            error_log("fullpage - hide");
+            if ($message) {
+                toast()
+                    ->success($message)
+                    ->pushOnNextPage();
+            }
+            return redirect($this->originURL);
+        }
     }
 }

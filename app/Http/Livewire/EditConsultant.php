@@ -4,8 +4,8 @@ namespace App\Http\Livewire;
 
 use App\Models\Consultant;
 use App\Models\Tag;
-use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
+
 
 class EditConsultant extends Component
 {
@@ -29,7 +29,7 @@ class EditConsultant extends Component
         'consultant.notes' => 'string|min:5|nullable'
     ];
 
-    public function mount($component=null, $edit_id = null)
+    public function mount($edit_id = null)
     {
         if ($edit_id) {
             $this->consultant = Consultant::findOrFail($edit_id);
@@ -79,7 +79,7 @@ class EditConsultant extends Component
             $consultant->save();
         }
 
-        $this->emit('hide');
+        $this->emit('hide', "Saved Successfully!");
         $this->emit('consultants-changed');
     }
 

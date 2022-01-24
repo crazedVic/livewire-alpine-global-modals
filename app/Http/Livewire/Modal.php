@@ -3,9 +3,13 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Usernotnull\Toast\Concerns\WireToast;
 
 class Modal extends Component
 {
+
+    use WireToast;
+
     public $edit_id;
     public $component;
     public bool $show = false;
@@ -23,10 +27,17 @@ class Modal extends Component
         $this->show = true;
     }
 
-    public function hide(){
-       error_log("modal - hide");
-       $this->component = null;
-       $this->show = false;
+    public function hide($message = null){
+        if($this->component) {
+            error_log("modal - hide");
+            $this->component = null;
+            $this->show = false;
+            if ($message) {
+                toast()
+                    ->success($message)
+                    ->push();
+            }
+        }
     }
 
     public function updatedShow($value){

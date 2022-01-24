@@ -2,7 +2,9 @@ module.exports = {
     mode: 'jit',
     purge:[
         "./resources/**/*.blade.php",
-        "./resources/**/*.js"
+        "./resources/**/*.js",
+        './vendor/usernotnull/tall-toasts/config/**/*.php',
+        './vendor/usernotnull/tall-toasts/resources/views/**/*.blade.php'
     ],
   theme: {
     extend: {
