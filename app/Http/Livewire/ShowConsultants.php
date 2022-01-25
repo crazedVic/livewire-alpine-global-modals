@@ -18,9 +18,16 @@ class ShowConsultants extends Component
 
     public function render()
     {
-        $this->consultants = Consultant::whereHas('tags', function (Builder $query) {
-           $query->where('name', 'like', $this->searchTerm != "" ? '%'.$this->searchTerm.'%' : '%');
-        })->get();
+        if($this->searchTerm = ""){
+            $query = Consultant::whereHas('tags', function (Builder $query) {
+                $query->where('name', 'like', $this->searchTerm != "" ? '%'.$this->searchTerm.'%' : '%');
+            });
+        }
+        else{
+            $query = Consultant::query();
+        }
+
+        $this->consultants = $query->get();
         return view('livewire.show-consultants');
     }
 

@@ -15,7 +15,7 @@ class FullPage extends Component
 
     public $listeners = ['hide'];
 
-    public function mount($component, $edit_id = null){
+    public function mount(){
         $this->originURL = request()->query('originURL') ?? null;
     }
 
@@ -31,7 +31,14 @@ class FullPage extends Component
                 ->success($message)
                 ->pushOnNextPage();
         }
+        //$this->component = null;
         return redirect($this->originURL);
 
+    }
+
+    public function returnToIndex(){
+       error_log($this->originURL);
+       //$this->component = "";
+       return redirect($this->originURL);
     }
 }

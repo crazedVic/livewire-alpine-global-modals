@@ -40,7 +40,6 @@ class Modal extends Component
     public function updatedShow($value){
         if(!$value){
             $this->component = null;
-
         }
     }
 

@@ -10,28 +10,12 @@
     </div>
     <form class="p-1 md:px-2 mx-2 lg:mx-4 border border-gray-800 pb-1 ">
         <h2 class="text-gray-300">Contact Information</h2>
-        <label for="name" class="block my-1">
-            <input wire:model="consultant.name" id="name" type="text" autocomplete="nope"  class="bg-gray-600 text-white w-full py-1 px-4 rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
-            @error('consultant.name') outline outline-1 outline-red-500 outline-offset-4  @enderror" placeholder="Consultant's Name" >
-            @error('consultant.name') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
-        </label>
-        <label for="company" class="block my-1">
-            <input wire:model="consultant.company" type="text" id="company" autocomplete="nope" class="bg-gray-600 text-white w-full py-1 px-4 my-0.5 rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
-            @error('consultant.company') outline outline-1 outline-red-500 outline-offset-4  @enderror" placeholder="Company Name (optional)" >
-            @error('consultant.company') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
-        </label>
-        <label for="phone" class="block my-1">
-            <input wire:model="consultant.phone" type="text" id="phone" autocomplete="nope"
-                   class="bg-gray-600 text-white w-full py-1 px-4 my-0.5 rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
-            @error('consultant.phone') outline outline-1 outline-red-500 outline-offset-4  @enderror" placeholder="Phone Number" >
-            @error('consultant.phone') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
-        </label>
-        <label for="email" class="block my-1">
-            <input wire:model="consultant.email" type="text" id="email" autocomplete="nope" class="bg-gray-600 text-white w-full py-1 px-4 my-0.5 rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
-            @error('consultant.email') outline outline-1 outline-red-500 outline-offset-4  @enderror" placeholder="Email Address" >
-            @error('consultant.email') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
-        </label>
-        <div class="flex flex-col md:flex-row w-full justify-between md:space-x-2 mt-1 mb-1.5">
+        <x-alpine-input model="consultant" property="name" label="Full Name"/>
+        <x-alpine-input model="consultant" property="company" label="Company Name (opt)"/>
+        <x-alpine-input model="consultant" property="phone" label="Phone"/>
+        <x-alpine-input model="consultant" property="email" label="Email"/>
+        <div class="text-xs ml-1 mb-0.25 text-gray-400">Billing Details</div>
+        <div class="flex flex-col md:flex-row w-full justify-between md:space-x-2 items-start mt-1 mb-1.5">
             <label for="consultant.rate_currency" class="block flex-shrink w-full md:w-auto">
                 <div class="relative">
                     <select class="block appearance-none w-full bg-gray-600 rounded-md text-gray-300
@@ -77,12 +61,14 @@
                 @error('consultant.rate_frequency') <div class="text-red-400 text-right italic text-xxs mt-1">{{ $message }}</div> @enderror
             </label>
         </div>
-        <label for="platform" class="block w-full mt-1 mb-1.5">
+        <label for="platform" class="block w-full mt-1 mb-1.5"  x-data="{show:false,platform:@entangle('consultant.platform')}">
+            <div class="text-xs ml-1 mb-0.25 text-gray-400" x-show="show || (platform && platform.length > 0)" x-cloak x-transition.duration.1000ms>Freelance Platform</div>
             <div class="relative">
                 <select class="block appearance-none w-full bg-gray-600 rounded-md text-gray-300
                         py-1.5 pl-4 pr-8 my-0.5 rounded leading-tight focus:outline-none focus:bg-gray-600
                         @error('consultant.platform') outline outline-1 outline-red-500 outline-offset-4 @enderror
-                    focus:rounded-none" wire:model="consultant.platform" type="text" id="consultant.platform">
+                    focus:rounded-none" wire:model="consultant.platform" type="text" id="consultant.platform"
+                        x-on:focus="show=true" x-on:blur="show=false" x-model="platform">
                     <option value="" selected>Select Platform</option>
                     <option value="None">None/Direct</option>
                     <option>Freelancer</option>
@@ -97,22 +83,10 @@
             </div>
             @error('consultant.platform') <div class="text-red-400 text-right italic text-xxs my-1">{{ $message }}</div> @enderror
         </label>
-        @if($consultant && ($consultant->platform != "None" && $consultant->platform != ""))
-        <label for="platform_profile" class="block my-1">
-            <input wire:model="consultant.platform_profile" type="text" id="platform_profile" autocomplete="nope"
-                   class="bg-gray-600 text-white w-full py-1 px-4 my-0.5
-                   rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
-            @error('consultant.platform_profile') outline outline-1 outline-red-500 outline-offset-4  @enderror" placeholder="Freelance Profile URL" >
-            @error('consultant.platform_profile') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
-        </label>
-        @endif
-        <label for="linkedin" class="block my-1">
-            <input wire:model="consultant.linkedin" type="text" id="linkedin" autocomplete="nope"
-                   class="bg-gray-600 text-white w-full py-1 px-4 my-0.5 rounded-md focus:outline-none
-                   focus:bg-gray-500 focus:border focus:border-blue-600
-            @error('consultant.linkedin') outline outline-1 outline-red-500 outline-offset-4  @enderror" placeholder="LinkedIn Profile URL" >
-            @error('consultant.linkedin') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
-        </label>
+        <x-alpine-input model="consultant" property="platform_profile" label="Freelance Platform Profile"
+                        :hidden="!($consultant && ($consultant->platform != 'None' && $consultant->platform != ''))"/>
+
+       <x-alpine-input model="consultant" property="linkedin" label="LinkedIn Profile"/>
     </form>
     <div class="mt-5 p-1 md:px-2 mx-2 lg:mx-4 border border-gray-800  pb-3 ">
         <div class="flex md:flex-row flex-col py-1 justify-between w-full flex-wrap">

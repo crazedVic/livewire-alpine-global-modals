@@ -16,7 +16,7 @@ class Consultant extends Model
     // default values when creating new
     protected $attributes = [
         'rate_currency' => "CAD$",
-        'platform' => "None",
+        'platform' => "",
         'company' => "",
         'linkedin' => "",
         'platform_profile' => "",

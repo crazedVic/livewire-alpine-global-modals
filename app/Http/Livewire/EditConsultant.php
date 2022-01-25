@@ -24,8 +24,8 @@ class EditConsultant extends Component
         'consultant.rate_frequency' => 'required|string',
         'consultant.rate_currency' => 'required|string',
         'consultant.platform' => 'required|string',
-        'consultant.platform_profile' => 'string|nullable',
-        'consultant.linkedin' => 'string|nullable',
+        'consultant.platform_profile' => 'string|nullable|min:15',
+        'consultant.linkedin' => 'string|nullable|min:15',
         'consultant.notes' => 'string|min:5|nullable'
     ];
 
@@ -99,4 +99,5 @@ class EditConsultant extends Component
             $this->selected_tags[] = $id;
         }
     }
+
 }
