@@ -8,6 +8,10 @@ module.exports = {
     ],
   theme: {
     extend: {
+        // screens: {
+        //     'md': '800px',
+        //     // => @media (min-width: 992px) { ... }
+        // },
         fontSize: {
             xxs: '.5rem',
         },

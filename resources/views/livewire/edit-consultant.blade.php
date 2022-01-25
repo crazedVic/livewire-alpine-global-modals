@@ -14,12 +14,12 @@
         <x-alpine-input model="consultant" property="company" label="Company Name (opt)"/>
         <x-alpine-input model="consultant" property="phone" label="Phone"/>
         <x-alpine-input model="consultant" property="email" label="Email"/>
-        <div class="text-xs ml-1 mb-0.25 text-gray-400">Billing Details</div>
-        <div class="flex flex-col md:flex-row w-full justify-between md:space-x-2 items-start mt-1 mb-1.5">
-            <label for="consultant.rate_currency" class="block flex-shrink w-full md:w-auto">
+        <div class="text-xs ml-1 text-gray-400">Billing Details</div>
+        <div class="flex flex-col lg:flex-row w-full justify-between lg:space-x-2 items-start mt-0.25 mb-1.5">
+            <label for="consultant.rate_currency" class="block flex-shrink w-full lg:w-auto">
                 <div class="relative">
-                    <select class="block appearance-none w-full bg-gray-600 rounded-md text-gray-300
-                            py-1.5 pl-4 pr-8 my-0.5 rounded leading-tight focus:outline-none focus:bg-gray-600
+                    <select class="block appearance-none w-full bg-gray-600 rounded-md text-gray-300 min-w-fit
+                            py-1.5 pl-4 pr-8 my-0.5 rounded leading-tight focus:outline-none focus:bg-gray-600 focus:rounded-md
                             @error('consultant.rate_currency') outline outline-1 outline-red-500 outline-offset-4 @enderror
                         focus:rounded-none" wire:model="consultant.rate_currency" type="text" id="consultant.rate_currency">
                     <option selected>CAD$</option>
@@ -34,17 +34,17 @@
                 </div>
                 @error('consultant.rate_currency') <div class="text-red-400 text-right italic text-xxs mt-1">{{ $message }}</div> @enderror
             </label>
-            <label for="rate" class="block flex-grow w-full md:w-auto my-1 md:my-0">
+            <label for="rate" class="block flex-grow w-full lg:w-auto my-1 lg:my-0">
                 <input wire:model="consultant.rate" type="text" id="rate"
                        class="bg-gray-600 text-white py-1 px-4 my-0.5 w-full focus:outline-none focus:bg-gray-500 focus:border
                        focus:border-blue-600 rounded-md
                 @error('consultant.rate') outline outline-1 outline-red-500 outline-offset-4  @enderror" placeholder="Billing Rate" autocomplete="nope" >
                 @error('consultant.rate') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
             </label>
-            <label for="rate_frequency" class="block flex-shrink w-full md:w-auto">
-                <div class="relative">
+            <label for="rate_frequency" class="block flex-shrink w-full lg:w-auto">
+                <div class="relative  min-w-fit">
                     <select class="block appearance-none w-full bg-gray-600 rounded-md text-gray-300
-                            py-1.5 pl-4 pr-8 my-0.5 rounded leading-tight focus:outline-none focus:bg-gray-600
+                            py-1.5 pl-4 pr-8 my-0.5 rounded leading-tight focus:outline-none focus:bg-gray-600 focus:rounded-md
                             @error('consultant.rate_frequency') outline outline-1 outline-red-500 outline-offset-4 @enderror
                         focus:rounded-none" wire:model="consultant.rate_frequency" type="text" id="consultant.rate_frequency">
                         <option value="" selected>Frequency</option>
@@ -156,4 +156,8 @@
 
 {{--        </div>--}}
 {{--    </div>--}}
+    <span class="hidden lg:block xl:hidden">LG</span>
+    <span class="hidden md:block lg:hidden">MD</span>
+    <span class="hidden sm:block md:hidden">SM</span>
+    <span class="hidden xl:block 2xl:hidden">XL</span>
 </div>
