@@ -15,7 +15,7 @@ class TagFactory extends Factory
     public function definition()
     {
 
-        $categories = ["user","consultant","document","employee","consultant","consultant"];
+        $categories = ["deal","consultant","document","employee","consultant","consultant"];
         return [
             'name' => $this->faker->unique()->colorName(),
             'category' => $categories[array_rand($categories)]

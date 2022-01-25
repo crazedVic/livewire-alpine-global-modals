@@ -21,31 +21,39 @@
     </div>
     <div class="px-4 py-4" x-data>
         @foreach($tags as $tag)
-            <div class=" pl-3 mb-0.25 flex items-center rounded-sm hover:bg-gray-800
-                    @if($tag->id == $new_id)
-                        bg-green-700 bg-opacity-70 animate-fade
-                    @else bg-gray-700 bg-opacity-20
-                    @endif" id="{{$loop->index}}"
+            <div class="flex flex-col md:flex-row justify-between items-center
+                        hover:bg-gray-800 mb-1
+                        @if($tag->id == $new_id)
+                            bg-green-700 bg-opacity-70 animate-fade
+                        @else bg-gray-700 bg-opacity-20
+                        @endif"
+                 id="{{$loop->index}}"
                  @if(!$tag->trashed())
-                    x-on:mouseover="$refs.edit_{{$loop->index}}.style.visibility='visible';"
-                    x-on:mouseout="$refs.edit_{{$loop->index}}.style.visibility='hidden';"
+                 x-on:mouseover="$refs.edit_{{$loop->index}}.style.visibility='visible';"
+                 x-on:mouseout="$refs.edit_{{$loop->index}}.style.visibility='hidden';"
                 @endif
-                >
-                <span class="mr-2 whitespace-nowrap">{{$tag->name}}
-                    @if(!$tag->trashed())
-                        <span x-ref="edit_{{$loop->index}}" class="invisible cursor-pointer">
-                            <!-- this link is for desktop only-->
-                            <i class="hidden lg:inline-block far fa-edit text-green-500 text-xs"
-                               wire:click="$emitTo('modal', 'show','edit-tag', '{{$tag->id}}')"></i>
-                            <!-- this link is for mobile only-->
-                            <a href="/tags/{{$tag->id}}/edit-tag?originURL=/tags">
-                                <i class="inline-block lg:hidden far fa-edit text-green-500 text-xs" ></i></a>
-                        </span>
-                    @else
-                        <span class="md:align-middle bg-red-800 color-white rounded-md px-1
-                            select-none py-0.5 text-xxs mx-0.25 my-0.25">Archived</span>
-                    @endif
-                </span>
+            >
+                <div class=" pl-3 mb-0.25 flex items-center rounded-sm ">
+                    <span class="mr-2 whitespace-nowrap">{{$tag->name}}
+                        @if(!$tag->trashed())
+                            <span x-ref="edit_{{$loop->index}}" class="invisible cursor-pointer">
+                                <!-- this link is for desktop only-->
+                                <i class="hidden lg:inline-block far fa-edit text-green-500 text-xs"
+                                   wire:click="$emitTo('modal', 'show','edit-tag', '{{$tag->id}}')"></i>
+                                <!-- this link is for mobile only-->
+                                <a href="/tags/{{$tag->id}}/edit-tag?originURL=/tags">
+                                    <i class="inline-block lg:hidden far fa-edit text-green-500 text-xs" ></i></a>
+                            </span>
+                        @else
+                            <span class="md:align-middle bg-red-800 color-white rounded-md px-1
+                                select-none py-0.5 text-xxs mx-0.25 my-0.25">Archived</span>
+                        @endif
+                    </span>
+                </div>
+                <div class="md:align-middle bg-green-800 color-white rounded-md px-1 mr-2
+                            select-none py-0.5 text-xxs mx-0.25 my-0.25">
+                    {{$tag->category}}
+                </div>
             </div>
         @endforeach
     </div>
