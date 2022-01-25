@@ -14,52 +14,18 @@
         <x-alpine-input model="consultant" property="company" label="Company Name (opt)"/>
         <x-alpine-input model="consultant" property="phone" label="Phone"/>
         <x-alpine-input model="consultant" property="email" label="Email"/>
-        <div class="text-xs ml-1 text-gray-400">Billing Details</div>
-        <div class="flex flex-col lg:flex-row w-full justify-between lg:space-x-2 items-start mt-0.25 mb-1.5">
-            <label for="consultant.rate_currency" class="block flex-shrink w-full lg:w-auto">
-                <div class="relative">
-                    <select class="block appearance-none w-full bg-gray-600 rounded-md text-gray-300 min-w-fit
-                            py-1.5 pl-4 pr-8 my-0.5 rounded leading-tight focus:outline-none focus:bg-gray-600 focus:rounded-md
-                            @error('consultant.rate_currency') outline outline-1 outline-red-500 outline-offset-4 @enderror
-                        focus:rounded-none" wire:model="consultant.rate_currency" type="text" id="consultant.rate_currency">
-                    <option selected>CAD$</option>
-                    <option>USD$</option>
-                    <option>Euro</option>
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 bg-gray-600 text-gray-600 rounded-lg">
-                        <svg class="fill-current h-3 w-4 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                        </svg>
-                    </div>
-                </div>
-                @error('consultant.rate_currency') <div class="text-red-400 text-right italic text-xxs mt-1">{{ $message }}</div> @enderror
-            </label>
-            <label for="rate" class="block flex-grow w-full lg:w-auto my-1 lg:my-0">
-                <input wire:model="consultant.rate" type="text" id="rate"
-                       class="bg-gray-600 text-white py-1 px-4 my-0.5 w-full focus:outline-none focus:bg-gray-500 focus:border
-                       focus:border-blue-600 rounded-md
-                @error('consultant.rate') outline outline-1 outline-red-500 outline-offset-4  @enderror" placeholder="Billing Rate" autocomplete="nope" >
-                @error('consultant.rate') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
-            </label>
-            <label for="rate_frequency" class="block flex-shrink w-full lg:w-auto">
-                <div class="relative  min-w-fit">
-                    <select class="block appearance-none w-full bg-gray-600 rounded-md text-gray-300
-                            py-1.5 pl-4 pr-8 my-0.5 rounded leading-tight focus:outline-none focus:bg-gray-600 focus:rounded-md
-                            @error('consultant.rate_frequency') outline outline-1 outline-red-500 outline-offset-4 @enderror
-                        focus:rounded-none" wire:model="consultant.rate_frequency" type="text" id="consultant.rate_frequency">
-                        <option value="" selected>Frequency</option>
-                        <option>Per Hour</option>
-                        <option>Per Day</option>
-                        <option>Per Month</option>
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 bg-gray-600 text-gray-600 rounded-lg">
-                        <svg class="fill-current h-3 w-4 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                        </svg>
-                    </div>
-                </div>
-                @error('consultant.rate_frequency') <div class="text-red-400 text-right italic text-xxs mt-1">{{ $message }}</div> @enderror
-            </label>
+        <div class="flex flex-col lg:flex-row w-full justify-between lg:space-x-2 items-end mt-0.25 mb-1.5">
+            <x-alpine-select model="consultant" property="rate_currency" label="Currency" class="flex-shrink w-full lg:w-auto">
+                <option>CAD$</option>
+                <option>USD$</option>
+                <option>Euro</option>
+            </x-alpine-select>
+            <x-alpine-input model="consultant" property="rate" label="Billing Rate" :force="true"  class="flex-grow lg:w-auto"/>
+            <x-alpine-select model="consultant" property="rate_frequency" label="Period" class="flex-shrink lg:w-auto">
+                <option value="hour">Per Hour</option>
+                <option value="day">Per Day</option>
+                <option value="month">Per Month</option>
+            </x-alpine-select>
         </div>
         <label for="platform" class="block w-full mt-1 mb-1.5"  x-data="{show:false,platform:@entangle('consultant.platform')}">
             <div class="text-xs ml-1 mb-0.25 text-gray-400" x-show="show || (platform && platform.length > 0)" x-cloak x-transition.duration.1000ms>Freelance Platform</div>

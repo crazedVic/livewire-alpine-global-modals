@@ -6,8 +6,8 @@
         </div>
         <div class="flex flex-row space-x-0.5 md:space-x-2 cursor-pointer">
             @if(!$showTrashed)<span class="border-b border-blue-400 text-xs select-none" wire:click="toggleTrashed()">Archived</span>@endif
-            <a class="md:hidden border-b border-blue-400 text-xs select-none" href="/tags/add/edit-tag?originURL=/tags">New</a>
-            <a class="hidden md:block border-b border-blue-400 text-xs select-none" wire:click="$emitTo('modal', 'show', 'edit-tag')">New</a>
+            <a class="lg:hidden border-b border-blue-400 text-xs select-none" href="/tags/add/edit-tag?originURL=/tags">New</a>
+            <a class="hidden lg:block border-b border-blue-400 text-xs select-none" wire:click="$emitTo('modal', 'show', 'edit-tag')">New</a>
         </div>
     </div>
     <div class="px-4">
@@ -32,11 +32,11 @@
                     @if(!$tag->trashed())
                         <span x-ref="edit_{{$loop->index}}" class="invisible cursor-pointer">
                             <!-- this link is for desktop only-->
-                            <i class="hidden md:inline-block far fa-edit text-green-500 text-xs"
+                            <i class="hidden lg:inline-block far fa-edit text-green-500 text-xs"
                                wire:click="$emitTo('modal', 'show','edit-tag', '{{$tag->id}}')"></i>
                             <!-- this link is for mobile only-->
                             <a href="/tags/{{$tag->id}}/edit-tag?originURL=/tags">
-                                <i class="inline-block md:hidden far fa-edit text-green-500 text-xs" ></i></a>
+                                <i class="inline-block lg:hidden far fa-edit text-green-500 text-xs" ></i></a>
                         </span>
                     @else
                         <span class="md:align-middle bg-red-800 color-white rounded-md px-1

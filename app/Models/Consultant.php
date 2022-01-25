@@ -20,7 +20,8 @@ class Consultant extends Model
         'company' => "",
         'linkedin' => "",
         'platform_profile' => "",
-        'notes'=>""
+        'notes'=>"",
+        'rate_frequency'=>"hour"
     ];
 
     public function tags(): MorphToMany
