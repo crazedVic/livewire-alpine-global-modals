@@ -26,8 +26,11 @@
                         bg-green-700 bg-opacity-70 animate-fade
                     @else bg-gray-700 bg-opacity-20
                     @endif" id="{{$loop->index}}"
+                 @if(!$tag->trashed())
                     x-on:mouseover="$refs.edit_{{$loop->index}}.style.visibility='visible';"
-                    x-on:mouseout="$refs.edit_{{$loop->index}}.style.visibility='hidden';">
+                    x-on:mouseout="$refs.edit_{{$loop->index}}.style.visibility='hidden';"
+                @endif
+                >
                 <span class="mr-2 whitespace-nowrap">{{$tag->name}}
                     @if(!$tag->trashed())
                         <span x-ref="edit_{{$loop->index}}" class="invisible cursor-pointer">

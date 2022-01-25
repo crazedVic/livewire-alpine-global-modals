@@ -34,6 +34,9 @@ need some standardized practice to trigger a refresh on modal hide.
 - Alpine JS for hiding/showing of modals
 - Alpine $watch - super handy!
 - Alpine x-cloak - stops weird stuff from happening
+- Anonymous Blade Components
+- Alpine transitions, entangles combined with Components
+- Eloquent model default values 
 
 ## Features
 - minimalist tag search, tag results cloud
