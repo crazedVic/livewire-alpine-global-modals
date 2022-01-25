@@ -4,76 +4,97 @@
             <span class="text-2xl">Consultant</span>
             <span class="text-xs text-blue-400">@if($edit_id)Edit @else New @endif</span>
         </div>
-        <div>
-            <a class="border-b border-blue-400 text-xs cursor-pointer" wire:click="save()">Save</a>&nbsp;&nbsp;<a class="text-gray-400 text-xs cursor-pointer" href="/">Cancel</a>
+        <div class="select-none cursor-pointer text-xs">
+            <a class="border-b border-blue-400" wire:click="save()">Save</a>&nbsp;&nbsp;<a class="text-gray-400 " href="/">Cancel</a>
         </div>
     </div>
     <form class="p-1 md:px-2 mx-2 lg:mx-4 border border-gray-800 pb-1 ">
         <h2 class="text-gray-300">Contact Information</h2>
         <label for="name" class="block my-1">
             <input wire:model="consultant.name" id="name" type="text" autocomplete="nope"  class="bg-gray-600 text-white w-full py-1 px-4 rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
-            @error('consultant.name') border border-red-500 @enderror" placeholder="Consultant's Name" >
+            @error('consultant.name') outline outline-1 outline-red-500 outline-offset-4  @enderror" placeholder="Consultant's Name" >
             @error('consultant.name') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
         </label>
         <label for="company" class="block my-1">
             <input wire:model="consultant.company" type="text" id="company" autocomplete="nope" class="bg-gray-600 text-white w-full py-1 px-4 my-0.5 rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
-            @error('consultant.company') border border-red-500 @enderror" placeholder="Company Name (optional)" >
+            @error('consultant.company') outline outline-1 outline-red-500 outline-offset-4  @enderror" placeholder="Company Name (optional)" >
             @error('consultant.company') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
         </label>
         <label for="phone" class="block my-1">
             <input wire:model="consultant.phone" type="text" id="phone" autocomplete="nope"
                    class="bg-gray-600 text-white w-full py-1 px-4 my-0.5 rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
-            @error('consultant.phone') border border-red-500 @enderror" placeholder="Phone Number" >
+            @error('consultant.phone') outline outline-1 outline-red-500 outline-offset-4  @enderror" placeholder="Phone Number" >
             @error('consultant.phone') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
         </label>
         <label for="email" class="block my-1">
             <input wire:model="consultant.email" type="text" id="email" autocomplete="nope" class="bg-gray-600 text-white w-full py-1 px-4 my-0.5 rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
-            @error('consultant.email') border border-red-500 @enderror" placeholder="Email Address" >
+            @error('consultant.email') outline outline-1 outline-red-500 outline-offset-4  @enderror" placeholder="Email Address" >
             @error('consultant.email') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
         </label>
-        <div class="flex flex-col md:flex-row w-full justify-between md:space-x-3 my-1">
-            <label for="rate_currency" class="block flex-shrink w-full md:w-auto">
-                <select wire:model="consultant.rate_currency" type="text" id="rate_currency"
-                        class="bg-gray-600 text-white py-1 pl-4 md:pr-1 my-0.5 w-full focus:outline-none focus:bg-gray-500
-                        appearance-none rounded-md
-                @error('consultant.rate_currency') border border-red-500 @enderror">
+        <div class="flex flex-col md:flex-row w-full justify-between md:space-x-2 mt-1 mb-1.5">
+            <label for="consultant.rate_currency" class="block flex-shrink w-full md:w-auto">
+                <div class="relative">
+                    <select class="block appearance-none w-full bg-gray-600 rounded-md text-gray-300
+                            py-1.5 pl-4 pr-8 my-0.5 rounded leading-tight focus:outline-none focus:bg-gray-600
+                            @error('consultant.rate_currency') outline outline-1 outline-red-500 outline-offset-4 @enderror
+                        focus:rounded-none" wire:model="consultant.rate_currency" type="text" id="consultant.rate_currency">
                     <option selected>CAD$</option>
                     <option>USD$</option>
                     <option>Euro</option>
-                </select>
-                @error('consultant.rate_currency') <div class="text-red-400 text-right italic text-xxs my-1">{{ $message }}</div> @enderror
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 bg-gray-600 text-gray-600 rounded-lg">
+                        <svg class="fill-current h-3 w-4 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                        </svg>
+                    </div>
+                </div>
+                @error('consultant.rate_currency') <div class="text-red-400 text-right italic text-xxs mt-1">{{ $message }}</div> @enderror
             </label>
             <label for="rate" class="block flex-grow w-full md:w-auto my-1 md:my-0">
                 <input wire:model="consultant.rate" type="text" id="rate"
                        class="bg-gray-600 text-white py-1 px-4 my-0.5 w-full focus:outline-none focus:bg-gray-500 focus:border
                        focus:border-blue-600 rounded-md
-                @error('consultant.rate') border border-red-500 @enderror" placeholder="Billing Rate" autocomplete="nope" >
+                @error('consultant.rate') outline outline-1 outline-red-500 outline-offset-4  @enderror" placeholder="Billing Rate" autocomplete="nope" >
                 @error('consultant.rate') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
             </label>
             <label for="rate_frequency" class="block flex-shrink w-full md:w-auto">
-                <select wire:model="consultant.rate_frequency" type="text" id="rate_frequency"
-                        class="bg-gray-600 text-white py-1 w-full pl-4 md:pr-1 my-0.5 focus:outline-none focus:bg-gray-500
-                        appearance-none rounded-md
-                @error('consultant.rate_frequency') border border-red-500 @enderror" placeholder="Hourly/Monthly">
-                    <option value="" selected>Frequency</option>
-                    <option>Per Hour</option>
-                    <option>Per Day</option>
-                    <option>Per Month</option>
-                </select>
-                @error('consultant.rate_frequency') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
+                <div class="relative">
+                    <select class="block appearance-none w-full bg-gray-600 rounded-md text-gray-300
+                            py-1.5 pl-4 pr-8 my-0.5 rounded leading-tight focus:outline-none focus:bg-gray-600
+                            @error('consultant.rate_frequency') outline outline-1 outline-red-500 outline-offset-4 @enderror
+                        focus:rounded-none" wire:model="consultant.rate_frequency" type="text" id="consultant.rate_frequency">
+                        <option value="" selected>Frequency</option>
+                        <option>Per Hour</option>
+                        <option>Per Day</option>
+                        <option>Per Month</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 bg-gray-600 text-gray-600 rounded-lg">
+                        <svg class="fill-current h-3 w-4 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                        </svg>
+                    </div>
+                </div>
+                @error('consultant.rate_frequency') <div class="text-red-400 text-right italic text-xxs mt-1">{{ $message }}</div> @enderror
             </label>
         </div>
-        <label for="platform" class="block w-my-1">
-            <select wire:model="consultant.platform" type="text" id="platform" autocomplete="nope"
-                    class="bg-gray-600 text-white py-1 px-4 my-0.5 w-full focus:outline-none focus:bg-gray-500
-                        appearance-none rounded-md
-                @error('consultant.platform') border border-red-500 @enderror">
-                <option value="" selected>Select Platform</option>
-                <option value="None">None/Direct</option>
-                <option>Freelancer</option>
-                <option>Fiverr</option>
-                <option>Upwork</option>
-            </select>
+        <label for="platform" class="block w-full mt-1 mb-1.5">
+            <div class="relative">
+                <select class="block appearance-none w-full bg-gray-600 rounded-md text-gray-300
+                        py-1.5 pl-4 pr-8 my-0.5 rounded leading-tight focus:outline-none focus:bg-gray-600
+                        @error('consultant.platform') outline outline-1 outline-red-500 outline-offset-4 @enderror
+                    focus:rounded-none" wire:model="consultant.platform" type="text" id="consultant.platform">
+                    <option value="" selected>Select Platform</option>
+                    <option value="None">None/Direct</option>
+                    <option>Freelancer</option>
+                    <option>Fiverr</option>
+                    <option>Upwork</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 bg-gray-600 text-gray-600 rounded-lg">
+                    <svg class="fill-current h-3 w-4 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                    </svg>
+                </div>
+            </div>
             @error('consultant.platform') <div class="text-red-400 text-right italic text-xxs my-1">{{ $message }}</div> @enderror
         </label>
         @if($consultant && ($consultant->platform != "None" && $consultant->platform != ""))
@@ -81,7 +102,7 @@
             <input wire:model="consultant.platform_profile" type="text" id="platform_profile" autocomplete="nope"
                    class="bg-gray-600 text-white w-full py-1 px-4 my-0.5
                    rounded-md focus:outline-none focus:bg-gray-500 focus:border focus:border-blue-600
-            @error('consultant.platform_profile') border border-red-500 @enderror" placeholder="Freelance Profile URL" >
+            @error('consultant.platform_profile') outline outline-1 outline-red-500 outline-offset-4  @enderror" placeholder="Freelance Profile URL" >
             @error('consultant.platform_profile') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
         </label>
         @endif
@@ -89,7 +110,7 @@
             <input wire:model="consultant.linkedin" type="text" id="linkedin" autocomplete="nope"
                    class="bg-gray-600 text-white w-full py-1 px-4 my-0.5 rounded-md focus:outline-none
                    focus:bg-gray-500 focus:border focus:border-blue-600
-            @error('consultant.linkedin') border border-red-500 @enderror" placeholder="LinkedIn Profile URL" >
+            @error('consultant.linkedin') outline outline-1 outline-red-500 outline-offset-4  @enderror" placeholder="LinkedIn Profile URL" >
             @error('consultant.linkedin') <div class="text-red-400 text-right italic text-xxs my-0">{{ $message }}</div> @enderror
         </label>
     </form>

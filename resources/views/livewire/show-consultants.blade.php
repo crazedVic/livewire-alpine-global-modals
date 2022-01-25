@@ -5,10 +5,10 @@
             <a class="text-xs" href="/tags">Tags</a>
         </div>
         <div class=" space-x-0.5 md:space-x-2">
-            <a class="lg:hidden border-b border-blue-400 text-xs select-none"
+            <a class="border-b border-blue-400 text-xs select-none"
                href="/consultants/add/edit-consultant?originURL=/">New</a>
-             <a class="hidden lg:block border-b border-blue-400 text-xs select-none"
-                wire:click="$emitTo('modal', 'show', 'edit-consultant')">New</a>
+{{--             <a class="hidden lg:block border-b border-blue-400 text-xs select-none"--}}
+{{--                wire:click="$emitTo('modal', 'show', 'edit-consultant')">New</a>--}}
         </div>
     </div>
     <div class="px-1 md:px-4">
@@ -38,11 +38,11 @@
                     {{$consultant->name}}
                     <span x-ref="edit_{{$loop->index}}" class="invisible cursor-pointer">
                         <!-- this link is for desktop only-->
-                        <i class="hidden lg:inline-block far fa-edit text-green-500 text-xs"
-                           wire:click="$emitTo('modal', 'show','edit-consultant', '{{$consultant->id}}')"></i>
+{{--                        <i class="hidden far fa-edit text-green-500 text-xs"--}}
+{{--                           wire:click="$emitTo('modal', 'show','edit-consultant', '{{$consultant->id}}')"></i>--}}
                         <!-- this link is for mobile only-->
                         <a href="/consultants/{{$consultant->id}}/edit-consultant?originURL=/">
-                            <i class="inline-block lg:hidden far fa-edit text-green-500 text-xs" ></i></a>
+                            <i class="far fa-edit text-green-500 text-xs" ></i></a>
                     </span>
                 </span>
                 <span class="flex md:items-center items-start flex-wrap md:justify-end w-full">
