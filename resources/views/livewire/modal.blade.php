@@ -7,7 +7,7 @@
          x-transition:enter="motion-safe:ease-out duration-300"
          x-transition:enter-start="opacity-0 scale-0"
          x-transition:enter-end="opacity-100 scale-100">
-        <div class="p-3 mx-2 bg-black rounded shadow-xl border border-gray-700 md:max-w-2xl w-full md:p-3 lg:p-4 md:mx-0" @click.away="open = false">
+        <div class="p-3 mx-2 bg-black rounded-md shadow-md shadow-blue-700 md:max-w-2xl w-full md:p-3 lg:p-4 md:mx-0" @click.away="open = false">
             @if($component)
                 @livewire($component, ['edit_id' => $edit_id, 'full_page' => false])
             @endif
