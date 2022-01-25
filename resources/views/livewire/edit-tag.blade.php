@@ -11,7 +11,7 @@
     </div>
     <form class="px-2 md:mx-2">
         <div class="flex flex-col md:flex-row w-full justify-between md:items-end my-1 md:space-x-3 ">
-            <x-alpine-input model="tag" property="name" label="Tag Name" class="bg-red-900"/>
+            <x-alpine-input model="tag" property="name" label="Tag Name" />
             <label for="tag.category" class="block min-w-fit my-1.5 md:flex-shrink md:flex-grow-0 flex-grow" x-data="{show:false,tag_category:''}">
                 <div class="text-xs ml-1 mb-0.25 text-gray-400" x-show="show" x-cloak x-transition.duration.1000ms>Category</div>
                 <div class="relative">
