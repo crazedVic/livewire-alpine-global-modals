@@ -9,7 +9,6 @@ use Livewire\Component;
 
 class ShowConsultants extends Component
 {
-
     public Collection $consultants;
     public string $searchTerm = "";
     public $new_id;
@@ -18,7 +17,7 @@ class ShowConsultants extends Component
 
     public function render()
     {
-        if($this->searchTerm = ""){
+        if($this->searchTerm == ""){
             $query = Consultant::whereHas('tags', function (Builder $query) {
                 $query->where('name', 'like', $this->searchTerm != "" ? '%'.$this->searchTerm.'%' : '%');
             });
