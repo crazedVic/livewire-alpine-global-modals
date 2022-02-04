@@ -17,7 +17,7 @@ class ShowConsultants extends Component
 
     public function render()
     {
-        if($this->searchTerm == ""){
+        if($this->searchTerm != ""){
             $query = Consultant::whereHas('tags', function (Builder $query) {
                 $query->where('name', 'like', $this->searchTerm != "" ? '%'.$this->searchTerm.'%' : '%');
             });
