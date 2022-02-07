@@ -15,6 +15,7 @@
             <x-alpine-select model="tag" property="category" label="Category" :force="true" class="lg:w-auto min-w-fit">
                 <option value="" selected>Select Category</option>
                 <option value="employee">Employees</option>
+                <option value="deal">Deals</option>
                 <option value="consultant">Consultants</option>
                 <option value="document">Documents</option>
                 <option value="user">Users</option>
