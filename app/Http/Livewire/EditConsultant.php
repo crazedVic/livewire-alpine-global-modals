@@ -88,7 +88,7 @@ class EditConsultant extends Component
         $tag = Tag::withTrashed()->find($id);
         $id_to_remove = array_search($id, $this->selected_tags,true);
 
-        if ($id_to_remove) {
+        if ($id_to_remove !== false) {
             unset($this->selected_tags[$id_to_remove]);
             if($tag->trashed()){
                 // remove relationship in db as well
