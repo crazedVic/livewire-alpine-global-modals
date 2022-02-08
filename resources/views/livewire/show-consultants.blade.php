@@ -54,7 +54,7 @@
                                     {{$tag->name}}
                                 </div>
                             @else
-                                <div class="md:align-middle bg-gray-700 color-white rounded-md px-1 line-through
+                                <div class="md:align-middle bg-gray-700 color-white rounded-md px-1
                                 select-none py-0.5 text-xxs mx-0.25 my-0.25">
                                     {{$tag->name}}
                                 </div>
