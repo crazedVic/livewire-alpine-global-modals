@@ -4,7 +4,7 @@
 
 <label for="{{$property}}"
        {{ $attributes->merge(['class' => "block w-full mb-1 " . ($hidden ? "hidden" :"" )]) }}
-       x-data="{show:false, {{$property}}:'{{$this->getPropertyValue($model)->$property}}'}">
+       x-data="{show:false, {{$property}}:'{{addslashes($this->getPropertyValue($model)->$property)}}'}">
     <div class="text-xs ml-1 mb-0.5 text-gray-400"
          @if(!$force) x-show="show | {{$property}}.length > 0"  @endif x-cloak x-transition.duration.1000ms>{{$label}}</div>
     <div class="relative">
