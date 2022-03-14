@@ -47,11 +47,18 @@
                 </span>
                 <span class="flex md:items-center items-start flex-wrap md:justify-end w-full">
                     @if($searchTerm!="")
-                        @foreach($consultant->tags()->where('name', 'like', '%'.$searchTerm.'%')->get() as $tag)
-                            <div class="md:align-middle bg-green-800 color-white rounded-md px-1
-                            select-none py-0.5 text-xxs mx-0.25 my-0.25">
-                                {{$tag->name}}
-                            </div>
+                        @foreach($consultant->tags()->where('name', 'like', '%'.$searchTerm.'%')->withTrashed()->get() as $tag)
+                            @if (!$tag->trashed())
+                                <div class="md:align-middle bg-green-800 color-white rounded-md px-1
+                                select-none py-0.5 text-xxs mx-0.25 my-0.25">
+                                    {{$tag->name}}
+                                </div>
+                            @else
+                                <div class="md:align-middle bg-gray-700 color-white rounded-md px-1 line-through
+                                select-none py-0.5 text-xxs mx-0.25 my-0.25">
+                                    {{$tag->name}}
+                                </div>
+                            @endif
                         @endforeach
                     @endif
                 </span>
